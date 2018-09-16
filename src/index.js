@@ -1,30 +1,47 @@
 class Sorter {
   constructor() {
-    // your implementation
+    this.ar = [];
+    this.compFunction = (a, b) => (a - b);
   }
 
   add(element) {
-    // your implementation
+    this.ar.push(element);
   }
 
   at(index) {
-    // your implementation
+    return this.ar[index];
   }
 
   get length() {
-    // your implementation
+    return this.ar.length;
   }
 
   toArray() {
-    // your implementation
+    return this.ar;
   }
 
   sort(indices) {
-    // your implementation
+    //subset of main collection
+    var newAr = [];
+    indices.sort();
+
+    //fill the subset with elements from the main collection
+    for (var i in indices) {
+      newAr.push(this.ar[indices[i]]);
+    }
+    
+    //Sort the subset
+    newAr.sort(this.compFunction);
+    
+    //update the main collection
+    for (var i in indices) {
+      this.ar[indices[i]] = newAr[i];
+    }
   }
 
   setComparator(compareFunction) {
     // your implementation
+    this.compFunction = compareFunction;
   }
 }
 
